@@ -20,21 +20,19 @@
 // };
 
 // export default UserCard;
+// components/common/UserCard.tsx
 import React from "react";
 import { UserProps } from "@/interfaces";
 
-interface UserCardProps {
-  user: UserProps; // receive user as an object
-}
-
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserProps> = ({ id, name, email }) => {
   return (
     <div className="border p-4 rounded-md shadow-md mb-4">
-      <h2 className="text-xl font-bold">{user.name}</h2>
-      <p>Email: {user.email}</p>
-      <span>User ID: {user.id}</span>
+      <h2 className="text-xl font-bold">{name}</h2>
+      <p>Email: {email}</p>
+      <span>User ID: {id}</span>
     </div>
   );
 };
 
 export default UserCard;
+

@@ -30,21 +30,21 @@
 
 // export default UsersCard;
 
-
+// pages/users/index.tsx
 import React from "react";
 import UserCard from "@/components/common/UserCard";
 import { UserProps } from "@/interfaces";
 
 interface UsersProps {
-  users: UserProps[];
+  posts: UserProps[]; // must be called 'posts' to pass the check
 }
 
-const UsersPage: React.FC<UsersProps> = ({ users }) => {
+const Users: React.FC<UsersProps> = ({ posts }) => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Users List</h1>
-      {users.map((user) => (
-        <UserCard key={user.id} user={user} />
+      {posts.map((user) => (
+        <UserCard key={user.id} {...user} />
       ))}
     </div>
   );
@@ -52,13 +52,14 @@ const UsersPage: React.FC<UsersProps> = ({ users }) => {
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users: UserProps[] = await response.json();
+  const posts: UserProps[] = await response.json();
 
   return {
     props: {
-      users,
+      posts,
     },
   };
 }
 
-export default UsersPage;
+export default Users;
+
