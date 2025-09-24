@@ -101,12 +101,15 @@ interface PostsProps {
 }
 
 const Posts: React.FC<PostsProps> = ({ posts }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [userPosts, setUserPosts] = useState<PostData[]>(posts);
+const [isModalOpen, setModalOpen] = useState(false);
+const [post, setPost] = useState<PostData | null>(null); // this line is required
+const [userPosts, setUserPosts] = useState<PostData[]>(posts);
 
-  const handleAddPost = (newPost: PostData) => {
-    setUserPosts([...userPosts, { ...newPost, id: userPosts.length + 1 }]);
-  };
+const handleAddPost = (newPost: PostData) => {
+  setPost(newPost); // store the new post
+  setUserPosts([...userPosts, { ...newPost, id: userPosts.length + 1 }]);
+};
+
 
   return (
     <div className="flex flex-col h-screen">
